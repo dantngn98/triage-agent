@@ -105,9 +105,13 @@ class Trace:
         return self.record
 
 
+def default_trace_path() -> Path:
+    return TRACES_DIR / f"{datetime.now():%Y-%m-%d}.jsonl"
+
+
 def write_trace(record: TraceRecord, path: Path | None = None) -> Path:
     """Append one JSON line; defaults to traces/<YYYY-MM-DD>.jsonl."""
-    path = path or TRACES_DIR / f"{datetime.now():%Y-%m-%d}.jsonl"
+    path = path or default_trace_path()
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("a", encoding="utf-8") as f:
         f.write(record.model_dump_json() + "\n")
@@ -117,10 +121,10 @@ def write_trace(record: TraceRecord, path: Path | None = None) -> Path:
 # --------------------------------------------------------------------------
 # Spend cap
 # --------------------------------------------------------------------------
-def total_spend(dirs: Iterable[Path] = SPEND_DIRS) -> float:
+def total_spend(dirs: Iterable[Path] | None = None) -> float:
     """Sum total_cost_usd over every line of every .jsonl file in the given folders."""
     total = 0.0
-    for d in dirs:
+    for d in (SPEND_DIRS if dirs is None else dirs):
         if not Path(d).is_dir():
             continue
         for f in sorted(Path(d).rglob("*.jsonl")):
@@ -132,7 +136,7 @@ def total_spend(dirs: Iterable[Path] = SPEND_DIRS) -> float:
     return total
 
 
-def check_budget(cfg: Settings, dirs: Iterable[Path] = SPEND_DIRS) -> float:
+def check_budget(cfg: Settings, dirs: Iterable[Path] | None = None) -> float:
     """Raise BudgetExceeded once recorded spend reaches max_spend_usd; else return spend."""
     spent = total_spend(dirs)
     if spent >= cfg.max_spend_usd:

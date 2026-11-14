@@ -83,7 +83,9 @@ ROUTE_FIELD_TARGETS: dict[str, tuple[str, ...]] = {
 # --------------------------------------------------------------------------
 # Trace record: one JSON line per run, built by tracing.Trace.
 # --------------------------------------------------------------------------
-Decision = Literal["approved", "rejected", "manual_review"]
+# approved/rejected at the gate; manual_review after two failed validations;
+# no_act when run with --no-act; error when the run crashed (trace still written).
+Decision = Literal["approved", "rejected", "manual_review", "no_act", "error"]
 
 
 class ToolCallRecord(BaseModel):
@@ -124,3 +126,5 @@ class TraceRecord(BaseModel):
     total_cost_usd: float = 0.0
     latency_s: float = 0.0
     decision: Decision | None = None
+    action: dict[str, Any] | None = None   # what step 5 did, e.g. {"type": "create_task", "ref": 109}
+    error: str | None = None

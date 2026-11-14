@@ -28,12 +28,13 @@ class Settings(BaseSettings):
     max_context_turns: int = Field(default=4, ge=1)
     board_path: Path = ROOT / "data" / "board.json"
     seed_board_path: Path = ROOT / "data" / "seed_board.json"
+    drafts_dir: Path = ROOT / "drafts"
     max_spend_usd: float = Field(default=4.00, gt=0)
     auto_approve: bool = False
     # Client-side pacing: max model calls per minute, 0 disables. Set from AI Studio limits.
     rpm_limit: int = Field(default=0, ge=0)
 
-    @field_validator("board_path", "seed_board_path")
+    @field_validator("board_path", "seed_board_path", "drafts_dir")
     @classmethod
     def _resolve_against_root(cls, v: Path) -> Path:
         return v if v.is_absolute() else ROOT / v
