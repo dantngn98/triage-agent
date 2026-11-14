@@ -30,6 +30,8 @@ class Settings(BaseSettings):
     seed_board_path: Path = ROOT / "data" / "seed_board.json"
     max_spend_usd: float = Field(default=4.00, gt=0)
     auto_approve: bool = False
+    # Client-side pacing: max model calls per minute, 0 disables. Set from AI Studio limits.
+    rpm_limit: int = Field(default=0, ge=0)
 
     @field_validator("board_path", "seed_board_path")
     @classmethod

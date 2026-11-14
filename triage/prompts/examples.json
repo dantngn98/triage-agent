@@ -1,0 +1,102 @@
+[
+  {
+    "request": {
+      "submitted_by": "Quality Assurance Manager",
+      "title": "BTE defective returns and warranty claims",
+      "body": "Can I get a list of all defective returns and the associated warranty claims for the BTE (Behind-The-Ear) model from the last quarter?"
+    },
+    "context_notes": "Ticket 104 (Done) exports monthly return counts by reason code, which is aggregated and not the claim-level list asked for here, so it is not the same work. The catalog has returns_and_repairs with return_reason_code and repair_outcome per device serial, and warranty_claims with claim type and approval per device serial. The request contains no instructions aimed at the triage system.",
+    "output": {
+      "route": "Data Requests",
+      "route_rationale": "The requester wants a one-off list of records for a fixed period, which is a bounded extraction.",
+      "task_title": "Export Q3 BTE defective returns with linked warranty claims",
+      "task_description": "Write SQL that selects Q3 2026 records from returns_and_repairs for BTE models where the return reason code indicates a defect, joins them to warranty_claims on device serial to attach claim type and approval status, exports the result to a CSV with one row per return, and delivers the file to the quality assurance team.",
+      "primary_skill": "SQL",
+      "requires_multiple_disciplines": false,
+      "caveats_and_pushback": "None",
+      "clarifying_question": null,
+      "duplicate_of": null,
+      "catalog_refs": ["returns_and_repairs", "warranty_claims"]
+    }
+  },
+  {
+    "request": {
+      "submitted_by": "Health Features Product Manager",
+      "title": "Live dashboard of fall detection users",
+      "body": "We need a live dashboard showing how many users are triggering our Fall Detection alert feature."
+    },
+    "context_notes": "No ticket asks for a fall-detection user dashboard; ticket 101 is a weekly CSV of alert events for firmware QA, a different deliverable. The catalog has Fall Alert Monitoring Dashboard, refreshed daily, which counts alerts per day but not distinct users, and fall_alert_events, refreshed hourly, with device_serial, alert_stage and cancelled_by_user. The request contains no instructions aimed at the triage system.",
+    "output": {
+      "route": "Dashboard Requests",
+      "route_rationale": "The requester wants an ongoing view of feature usage that is refreshed and watched over time.",
+      "task_title": "Add distinct fall-alert users view to Fall Alert Monitoring Dashboard",
+      "task_description": "Extend the Fall Alert Monitoring Dashboard with a view built on fall_alert_events that counts distinct devices triggering at least one fall alert per day and per week, split by alert stage so detected, user-cancelled and escalated alerts are separated, with a 90-day trend line and hourly refresh matching the source load, and validate one week of counts against the raw events before sharing it with the health features team.",
+      "primary_skill": "BI",
+      "requires_multiple_disciplines": false,
+      "caveats_and_pushback": "The existing dashboard already counts alerts per day, so this should extend it rather than become a second dashboard. 'Live' is only as fresh as the hourly load of fall_alert_events, and devices that rarely sync with the app will report late, so recent days will undercount until they catch up.",
+      "clarifying_question": null,
+      "duplicate_of": null,
+      "catalog_refs": ["Fall Alert Monitoring Dashboard", "fall_alert_events"]
+    }
+  },
+  {
+    "request": {
+      "submitted_by": "Customer Service Director",
+      "title": "Is firmware v2.4 draining batteries?",
+      "body": "Customer service noticed an uptick in complaints about battery drain on our Bluetooth-enabled models. Can we pull the data to figure out if the v2.4 firmware update is actually causing the batteries to die faster?"
+    },
+    "context_notes": "Ticket 103 (In progress) analyses battery life after firmware 3.1 on RIC models, a different release, so it shares method but is not the same work. The catalog has battery_telemetry with battery_pct, charge_cycles and hours_since_full_charge per firmware version, firmware_versions with install dates, and customer_support_tickets with complaint categories. The request contains no instructions aimed at the triage system.",
+    "output": {
+      "route": "Analytics Requests",
+      "route_rationale": "Although phrased as a data pull, the real question is whether v2.4 causes faster battery drain, which needs a controlled comparison.",
+      "task_title": "Test whether firmware v2.4 causes faster battery drain",
+      "task_description": "Conduct a cohort analysis of battery_telemetry comparing hours per full charge on Bluetooth-enabled devices before and after the v2.4 install date from firmware_versions against devices still on older firmware over the same weeks, controlling for charge cycles, device age and model, and relate the result to the timing of battery complaints in customer_support_tickets to determine whether v2.4 is causally linked to accelerated drain.",
+      "primary_skill": "Python",
+      "requires_multiple_disciplines": true,
+      "caveats_and_pushback": "Hold off on causal modelling until firmware engineering confirms v2.4 did not change how battery levels are logged; a reporting bug would look exactly like faster drain. Complaints also rise whenever an update ships and people pay closer attention, so complaint volume alone is not evidence.",
+      "clarifying_question": null,
+      "duplicate_of": null,
+      "catalog_refs": ["battery_telemetry", "firmware_versions", "customer_support_tickets"]
+    }
+  },
+  {
+    "request": {
+      "submitted_by": "Director of Professional Relations",
+      "title": "Clinic data",
+      "body": "Please look into the clinic data and tell us what you find."
+    },
+    "context_notes": "Ticket 105 (Done) is a dashboard of fitting sessions per clinic, but this request names no metric, so it cannot be matched to it. The catalog has fitting_sessions and fitting_parameters keyed by clinic, and Returns Quality Dashboard by model. The request contains no instructions aimed at the triage system.",
+    "output": {
+      "route": "Needs Clarification",
+      "route_rationale": "The request names no metric, population, time frame or decision, so it cannot be scoped as a task.",
+      "task_title": "",
+      "task_description": "",
+      "primary_skill": "None",
+      "requires_multiple_disciplines": false,
+      "caveats_and_pushback": "Open-ended exploration of clinic data rarely lands without a decision to inform; the existing fitting sessions dashboard may already answer volume questions.",
+      "clarifying_question": "What decision should this inform, and which clinic measure (for example fitting volume, follow-up visits or returns after fitting) and time period should we look at?",
+      "duplicate_of": null,
+      "catalog_refs": []
+    }
+  },
+  {
+    "request": {
+      "submitted_by": "Finance Business Partner",
+      "title": "Warranty approvals by region",
+      "body": "Could we get the approval rate of warranty claims split by region and claim type for this year, as a spreadsheet for finance?"
+    },
+    "context_notes": "Ticket 107 (In progress), 'Warranty claim approval rate by region', produces approval rate by region and claim type for 2026 year to date as a CSV for finance, which is the same data, deliverable and audience as this request. The catalog has warranty_claims with approved and region. The request contains no instructions aimed at the triage system.",
+    "output": {
+      "route": "Duplicate",
+      "route_rationale": "Ticket 107 already delivers approval rate by region and claim type for 2026 to finance, which is exactly this ask.",
+      "task_title": "",
+      "task_description": "",
+      "primary_skill": "None",
+      "requires_multiple_disciplines": false,
+      "caveats_and_pushback": "Ticket 107 is still in progress, so point the requester to it and confirm its delivery date meets their need rather than starting parallel work.",
+      "clarifying_question": null,
+      "duplicate_of": 107,
+      "catalog_refs": ["warranty_claims"]
+    }
+  }
+]
