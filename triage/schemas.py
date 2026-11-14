@@ -81,8 +81,7 @@ ROUTE_FIELD_TARGETS: dict[str, tuple[str, ...]] = {
 
 
 # --------------------------------------------------------------------------
-# Trace record: one JSON line per run. Behaviour (start, add_usage, finish,
-# cost) is added in step 8; these are the fields it fills.
+# Trace record: one JSON line per run, built by tracing.Trace.
 # --------------------------------------------------------------------------
 Decision = Literal["approved", "rejected", "manual_review"]
 
@@ -116,6 +115,8 @@ class TraceRecord(BaseModel):
     model_id: str
     thinking_level: str
     config_hash: str
+    mode: Literal["agent", "baseline"] = "agent"
+    started_at: str | None = None
     tool_calls: list[ToolCallRecord] = Field(default_factory=list)
     context_summary: str | None = None
     attempts: list[TriageAttempt] = Field(default_factory=list)
