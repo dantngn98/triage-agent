@@ -1,0 +1,17 @@
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+build/
+dist/
+
+# Working board (rebuilt from data/seed_board.json)
+data/board.json
+
+# Clarification drafts written by step 5 actions
+drafts/
