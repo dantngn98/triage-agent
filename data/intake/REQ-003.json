@@ -1,0 +1,7 @@
+{
+  "request_id": "REQ-003",
+  "submitted_by": "Firmware QA Lead",
+  "submitted_at": "2026-11-04",
+  "title": "Weekly fall alert numbers per firmware",
+  "body": "Could someone send us a CSV every week with fall alert events broken down by firmware version? Firmware QA wants to track whether alert volumes change from one release to the next."
+}

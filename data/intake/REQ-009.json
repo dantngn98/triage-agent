@@ -1,0 +1,7 @@
+{
+  "request_id": "REQ-009",
+  "submitted_by": "Battery Supplier Liaison",
+  "submitted_at": "2026-11-07",
+  "title": "Battery readings for RIC devices on firmware 3.1",
+  "body": "Our battery cell supplier wants to run their own lab analysis. Please export raw battery readings (charge cycles, battery percentage, hours since full charge) for RIC devices on firmware 3.1 from the last 60 days, with device serials hashed, as a CSV we can send them."
+}

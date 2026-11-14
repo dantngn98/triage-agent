@@ -1,0 +1,7 @@
+{
+  "request_id": "REQ-020",
+  "submitted_by": "Firmware Engineering Manager",
+  "submitted_at": "2026-11-14",
+  "title": "Weekly battery telemetry CSVs by email",
+  "body": "Please email me a CSV of all battery telemetry every Monday so I can keep an eye on battery problems across firmware versions. I'll check the averages in Excel each week."
+}

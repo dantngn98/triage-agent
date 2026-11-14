@@ -1,0 +1,7 @@
+{
+  "request_id": "REQ-014",
+  "submitted_by": "Quality Director",
+  "submitted_at": "2026-11-11",
+  "title": "Regression on which model gets returned most",
+  "body": "Please run a regression model to find out which hearing aid model is returned most often. We want to focus next quarter's quality programme on the worst one."
+}

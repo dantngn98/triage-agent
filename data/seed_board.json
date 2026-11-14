@@ -1,0 +1,89 @@
+{
+  "stories": [
+    {"ref": 1, "title": "Data Requests", "route": "Data Requests"},
+    {"ref": 2, "title": "Dashboard Requests", "route": "Dashboard Requests"},
+    {"ref": 3, "title": "Analytics Requests", "route": "Analytics Requests"}
+  ],
+  "tickets": [
+    {
+      "ref": 101,
+      "title": "Weekly CSV export of fall-alert events by firmware version",
+      "description": "Write SQL against fall_alert_events joined to firmware_versions and schedule a weekly CSV of alert counts by firmware version and alert stage for the firmware QA team.",
+      "status": "In progress",
+      "parent_story": "Data Requests",
+      "created": "2026-10-19",
+      "tags": ["SQL"],
+      "notes": []
+    },
+    {
+      "ref": 102,
+      "title": "Dashboard of app Bluetooth pairing failures by phone OS",
+      "description": "Build a BI dashboard from app_events showing pairing-failure events per 1,000 pairing attempts, split by os_platform and os_version, refreshed daily for the mobile team.",
+      "status": "Backlog",
+      "parent_story": "Dashboard Requests",
+      "created": "2026-10-27",
+      "tags": ["BI"],
+      "notes": []
+    },
+    {
+      "ref": 103,
+      "title": "Does firmware 3.1 shorten battery life on RIC models?",
+      "description": "Compare battery_telemetry for RIC devices before and after the firmware 3.1 update against devices still on 3.0, controlling for charge cycles and device age, to test whether 3.1 causes faster battery drain.",
+      "status": "In progress",
+      "parent_story": "Analytics Requests",
+      "created": "2026-10-12",
+      "tags": ["Python"],
+      "notes": []
+    },
+    {
+      "ref": 104,
+      "title": "Monthly CSV of returns by reason code",
+      "description": "Export a monthly CSV from returns_and_repairs of return counts by model and return_reason_code for the quality review meeting.",
+      "status": "Done",
+      "parent_story": "Data Requests",
+      "created": "2026-08-04",
+      "tags": ["SQL"],
+      "notes": []
+    },
+    {
+      "ref": 105,
+      "title": "Fitting sessions per clinic dashboard",
+      "description": "Build a weekly BI dashboard of fitting_sessions per clinic and fitting software version for the clinical software team.",
+      "status": "Done",
+      "parent_story": "Dashboard Requests",
+      "created": "2026-07-21",
+      "tags": ["BI"],
+      "notes": []
+    },
+    {
+      "ref": 106,
+      "title": "Auto-categorise support tickets with a text classifier",
+      "description": "Train and evaluate a text classifier on customer_support_tickets so incoming cases get a suggested category, and report precision per category.",
+      "status": "Backlog",
+      "parent_story": "Analytics Requests",
+      "created": "2026-09-30",
+      "tags": ["Python"],
+      "notes": []
+    },
+    {
+      "ref": 107,
+      "title": "Warranty claim approval rate by region",
+      "description": "Write SQL over warranty_claims to produce approval rate by region and claim type for 2026 year to date, delivered as a CSV to finance.",
+      "status": "In progress",
+      "parent_story": "Data Requests",
+      "created": "2026-11-03",
+      "tags": ["SQL"],
+      "notes": []
+    },
+    {
+      "ref": 108,
+      "title": "App onboarding funnel dashboard",
+      "description": "Build a BI dashboard of the companion app onboarding funnel from app_events, from install to first successful pairing, refreshed daily.",
+      "status": "In progress",
+      "parent_story": "Dashboard Requests",
+      "created": "2026-10-05",
+      "tags": ["BI"],
+      "notes": []
+    }
+  ]
+}

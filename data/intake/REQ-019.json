@@ -1,0 +1,7 @@
+{
+  "request_id": "REQ-019",
+  "submitted_by": "Hearing Science Lead",
+  "submitted_at": "2026-11-13",
+  "title": "Does fall-alert enablement change 90-day returns?",
+  "body": "Product wants to know whether users who enable the fall-alert feature have lower 90-day return rates than those who don't. Please design a comparison that accounts for the fact that people who opt in may differ from those who don't, and tell us how confident we can be."
+}

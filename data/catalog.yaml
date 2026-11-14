@@ -1,0 +1,93 @@
+# Synthetic data catalog for a fictional hearing-aid maker. No real systems, people or records.
+# type: dashboard (an existing BI view) or source (a warehouse table the team can query).
+entries:
+  - name: Mobile App Usage Dashboard
+    type: dashboard
+    owner: Mobile Analytics
+    refresh: daily
+    description: Daily and weekly active users of the companion app, sessions and feature use.
+    key_fields: [daily_active_users, weekly_active_users, sessions_per_user, app_version, os_platform, feature_taps]
+
+  - name: app_events
+    type: source
+    owner: Mobile Platform
+    refresh: hourly
+    description: Raw event stream from the companion app, including pairing and onboarding events.
+    key_fields: [event_id, event_name, device_serial, user_id_hash, app_version, os_platform, os_version, event_ts]
+
+  - name: battery_telemetry
+    type: source
+    owner: Device Firmware
+    refresh: daily (on app sync)
+    description: Battery readings uploaded when a device syncs with the app; devices that never sync send nothing.
+    key_fields: [device_serial, firmware_version, battery_pct, charge_cycles, hours_since_full_charge, reading_ts]
+
+  - name: Battery Health Dashboard
+    type: dashboard
+    owner: Device Firmware
+    refresh: weekly
+    description: Average battery life per charge by model and firmware version, with charge-cycle trends.
+    key_fields: [model, firmware_version, avg_battery_life_hours, median_charge_cycles, devices_reporting]
+
+  - name: firmware_versions
+    type: source
+    owner: Device Firmware
+    refresh: daily
+    description: Current and historical firmware installed on each device.
+    key_fields: [device_serial, model, firmware_version, install_date, update_channel]
+
+  - name: fall_alert_events
+    type: source
+    owner: Health Features
+    refresh: hourly
+    description: Events from the fall-detection feature, from detection through cancellation or escalation.
+    key_fields: [event_id, device_serial, event_ts, alert_stage, cancelled_by_user, contact_notified, sensitivity_setting, firmware_version]
+
+  - name: Fall Alert Monitoring Dashboard
+    type: dashboard
+    owner: Health Features
+    refresh: daily
+    description: Fall alerts per day, user-cancelled share and escalations by model.
+    key_fields: [alerts_per_day, cancelled_share, escalations, model]
+
+  - name: device_registry
+    type: source
+    owner: Supply Chain Data
+    refresh: daily
+    description: Every shipped device with model, form factor, ship date and region.
+    key_fields: [device_serial, model, form_factor, ship_date, region, bluetooth_enabled]
+
+  - name: returns_and_repairs
+    type: source
+    owner: Quality Engineering
+    refresh: daily
+    description: Return merchandise authorisations and repair outcomes.
+    key_fields: [rma_id, device_serial, model, return_reason_code, received_date, repair_outcome]
+
+  - name: Returns Quality Dashboard
+    type: dashboard
+    owner: Quality Engineering
+    refresh: weekly
+    description: Return rate per 1,000 shipped units by model, form factor and return reason.
+    key_fields: [model, form_factor, return_rate_per_1000, return_reason_code, week]
+
+  - name: warranty_claims
+    type: source
+    owner: Finance Systems
+    refresh: daily
+    description: Warranty claims with type, approval status and region.
+    key_fields: [claim_id, device_serial, claim_date, claim_type, approved, region]
+
+  - name: fitting_sessions
+    type: source
+    owner: Clinical Software
+    refresh: daily
+    description: Sessions from the clinic fitting software, including preset and gain changes.
+    key_fields: [session_id, clinic_id, device_serial, fitting_date, fitting_software_version, preset_name, program_count, gain_adjustments]
+
+  - name: customer_support_tickets
+    type: source
+    owner: Customer Support Ops
+    refresh: hourly
+    description: Support cases with category, device model and resolution.
+    key_fields: [case_id, device_serial, device_model, category, opened_date, closed_date, resolution]

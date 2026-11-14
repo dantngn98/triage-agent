@@ -1,0 +1,7 @@
+{
+  "request_id": "REQ-004",
+  "submitted_by": "Regulatory Affairs Specialist",
+  "submitted_at": "2026-11-04",
+  "title": "EU devices still below firmware 3.0",
+  "body": "For a field safety notice mailing we need a CSV list of device serial numbers in the EU region that are still on any firmware version below 3.0, with model and current firmware version. One-off, needed by November 20."
+}

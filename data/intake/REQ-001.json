@@ -1,0 +1,7 @@
+{
+  "request_id": "REQ-001",
+  "submitted_by": "Firmware Program Manager",
+  "submitted_at": "2026-11-02",
+  "title": "Dashboard to track firmware 3.2 rollout",
+  "body": "We start rolling out firmware 3.2 to all RIC and BTE models next week and it will take about a quarter. I need a dashboard that shows, each week, how many devices of each model are on each firmware version, so the firmware team can see adoption and spot models that stall. Refreshing daily is plenty."
+}

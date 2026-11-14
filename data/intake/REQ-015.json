@@ -1,0 +1,7 @@
+{
+  "request_id": "REQ-015",
+  "submitted_by": "Mobile Support Lead",
+  "submitted_at": "2026-11-11",
+  "title": "Pairing failures by phone OS",
+  "body": "We need a dashboard of Bluetooth pairing failures in the app split by phone OS and version. Support says users on the newest Android release struggle to pair and we want to watch it daily."
+}

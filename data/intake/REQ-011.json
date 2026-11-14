@@ -1,0 +1,7 @@
+{
+  "request_id": "REQ-011",
+  "submitted_by": "Clinical Software Test Lead",
+  "submitted_at": "2026-11-09",
+  "title": "October fitting sessions for test harness",
+  "body": "We need an export of all fitting sessions from October 2026 with clinic id, fitting date, software version, preset name and program count, so we can load realistic sessions into our test harness."
+}

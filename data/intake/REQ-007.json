@@ -1,0 +1,7 @@
+{
+  "request_id": "REQ-007",
+  "submitted_by": "Clinical Software Product Owner",
+  "submitted_at": "2026-11-06",
+  "title": "Did the v5 default presets increase whistling complaints?",
+  "body": "Support has seen more complaints about feedback whistling since clinics moved to fitting software v5, which changed the default gain preset. Can data science test whether devices fitted with the v5 presets get more whistling complaints than those fitted on v4, accounting for model and clinic? If it is the preset we need evidence before changing it for every clinic."
+}

@@ -1,0 +1,7 @@
+{
+  "request_id": "REQ-016",
+  "submitted_by": "Health Features Product Manager",
+  "submitted_at": "2026-11-12",
+  "title": "Escalated fall alerts by region dashboard",
+  "body": "We want an ongoing dashboard of escalated fall alerts (where an emergency contact was notified) per 10,000 active devices, by region and model, refreshed daily, so the health features team can monitor the feature after launch in new markets."
+}
