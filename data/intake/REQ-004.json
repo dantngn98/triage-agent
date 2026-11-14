@@ -1,7 +1,7 @@
 {
   "request_id": "REQ-004",
-  "submitted_by": "Regulatory Affairs Specialist",
+  "submitted_by": "Research Audiologist II",
   "submitted_at": "2026-11-04",
-  "title": "EU devices still below firmware 3.0",
-  "body": "For a field safety notice mailing we need a CSV list of device serial numbers in the EU region that are still on any firmware version below 3.0, with model and current firmware version. One-off, needed by November 20."
+  "title": "Random Sample of Audiograms",
+  "body": "I need an extraction of all audiometric data in the fitting software for a random sample of 100K patients. By audiometric data, I mean: air-conduction thresholds (regardless of which frequencies were tested) and bone-conduction thresholds (if measured)."
 }

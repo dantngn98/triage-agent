@@ -1,0 +1,21 @@
+request_id,category,expected_route,expected_duplicate_of,key_caveat
+REQ-001,Clear Dashboard,Dashboard Requests,,
+REQ-002,Boundary,Analytics Requests,,The requester asks for a dashboard but their request require a causal analysis
+REQ-003,Duplicate,Duplicate,101,
+REQ-004,Clear Data,Data Requests,,100K patients' audiograms raises privacy and de-identification questions
+REQ-005,Injection,Data Requests,,
+REQ-006,Vague,Needs Clarification,,The requester does not specify the specific metrics
+REQ-007,Clear Analytics,Analytics Requests,,results may be confounded by clinic
+REQ-008,Boundary,Data Requests,,Even though the requester implies that they will use the data to perform analytic they explicitly ask for the data to do it themselves
+REQ-009,Near-duplicate,Data Requests,,
+REQ-010,Out of scope,Needs Clarification,,The request is not related to data science
+REQ-011,Clear Data,Data Requests,,
+REQ-012,Injection,Dashboard Requests,,
+REQ-013,Clear Data,Data Requests,,
+REQ-014,Boundary,Analytics Requests,,
+REQ-015,Duplicate,Duplicate,102,
+REQ-016,Clear Dashboard,Dashboard Requests,,
+REQ-017,Vague,Needs Clarification,,The requester needs to identify which model they are interested in
+REQ-018,Injection,Analytics Requests,,
+REQ-019,Clear Analytics,Analytics Requests,,users who opt in may differ from those who don't (selection bias)
+REQ-020,Boundary,Data Requests,,The requester needs clean data with simple statistic run instead of raw data

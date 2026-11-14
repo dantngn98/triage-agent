@@ -3,5 +3,5 @@
   "submitted_by": "VP Product Management",
   "submitted_at": "2026-11-03",
   "title": "Live dashboard of fall-alert cancellations",
-  "body": "Please build a live dashboard of fall-alert cancellations by day. Since firmware 3.2 changed the default fall-detection sensitivity, users seem to be cancelling far more alerts, and I want to show leadership at the December review that the new sensitivity setting is what caused the jump in false alarms, so we can decide whether to roll it back."
+  "body": "Please build a live dashboard of fall-alert cancellations by day and by device type. Since firmware 3.2 changed the default fall-detection sensitivity, users seem to be cancelling far more alerts, and I want to show leadership at the December review that the new sensitivity setting is what caused the jump in false alarms, so we can decide whether to roll it back."
 }

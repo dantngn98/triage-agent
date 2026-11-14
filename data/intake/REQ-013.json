@@ -1,7 +1,7 @@
 {
   "request_id": "REQ-013",
-  "submitted_by": "Regional Sales Director APAC",
+  "submitted_by": "System Engineer",
   "submitted_at": "2026-11-10",
-  "title": "Dashboard of APAC shipments",
-  "body": "Can we get a dashboard with one number on it: how many units we shipped to the APAC region in fiscal 2026? I need it for a slide in tomorrow's board deck."
+  "title": "Battery Log Data",
+  "body": "I want a sample of battery logs as a csv to validate a new algorithm. I'd like to have: - type of device - date of mfg - battery voltage over a long time period - recorded SOC - streaming times - streaming types"
 }

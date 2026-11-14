@@ -1,7 +1,7 @@
 {
   "request_id": "REQ-020",
-  "submitted_by": "Firmware Engineering Manager",
+  "submitted_by": "Senior Research Audiologist",
   "submitted_at": "2026-11-14",
-  "title": "Weekly battery telemetry CSVs by email",
-  "body": "Please email me a CSV of all battery telemetry every Monday so I can keep an eye on battery problems across firmware versions. I'll check the averages in Excel each week."
+  "title": "Usage of consonant brightness feature",
+  "body": "We receive anecdotal reports that many clinicians do not understand this feature. Accordingly, it seems that the particular clinical environment for the professional often dictates how this setting is chosen rather than the addressing of patient need and preference. We would like to know the distribution of consonant brightness settings in the default Personal memory."
 }
