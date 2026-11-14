@@ -27,10 +27,11 @@ class Settings(BaseSettings):
     thinking_level: Literal["low", "medium", "high"] = "low"
     max_context_turns: int = Field(default=4, ge=1)
     board_path: Path = ROOT / "data" / "board.json"
+    seed_board_path: Path = ROOT / "data" / "seed_board.json"
     max_spend_usd: float = Field(default=4.00, gt=0)
     auto_approve: bool = False
 
-    @field_validator("board_path")
+    @field_validator("board_path", "seed_board_path")
     @classmethod
     def _resolve_against_root(cls, v: Path) -> Path:
         return v if v.is_absolute() else ROOT / v
