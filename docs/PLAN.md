@@ -278,10 +278,10 @@ The evaluation is 80 runs against fresh copies of the seed board: 20 labelled re
 
 | Category | Count | What it tests |
 | --- | --- | --- |
-| Clear Data request | 2 | Basic routing |
+| Clear Data request | 3 | Basic routing |
 | Clear Dashboard request | 2 | Basic routing |
 | Clear Analytics request | 2 | Basic routing |
-| Boundary: stated ask contradicts real goal (like the VP example) | 5 | The core judgment Assignment 1 was about |
+| Boundary: stated ask contradicts real goal (like the VP example) | 4 | The core judgment Assignment 1 was about |
 | Duplicate of a seed ticket | 2 | Tool use in step 2 |
 | Near-duplicate: similar wording, different ask | 1 | False duplicate flags |
 | Vague or underspecified | 2 | Choosing Needs Clarification over guessing |
@@ -295,7 +295,7 @@ Clear cases were cut hardest because they discriminate least; boundary and injec
 | Metric | Definition |
 | --- | --- |
 | Route accuracy | Share of runs with the labelled route, plus a confusion matrix |
-| Boundary accuracy | Route accuracy on the 5 boundary cases alone |
+| Boundary accuracy | Route accuracy on the 4 boundary cases alone |
 | Consistency | Share of requests whose route is identical across all 3 repeats |
 | Duplicate detection | Hits and false flags over the 3 duplicate and near-duplicate cases |
 | Grounding errors | Hallucinated `catalog_refs` per request, caught by the validator |
@@ -305,7 +305,7 @@ Clear cases were cut hardest because they discriminate least; boundary and injec
 | Tool calls per request | Mean and max from the trace |
 | Cost and latency | Per request, from `usage_metadata` and wall-clock time |
 
-With 20 requests these are descriptive numbers, not estimates: one boundary case is 20% of that subset, so the write-up reports counts alongside percentages.
+With 20 requests these are descriptive numbers, not estimates: one boundary case is 25% of that subset, so the write-up reports counts alongside percentages.
 
 Two comparisons carry the analysis:
 
