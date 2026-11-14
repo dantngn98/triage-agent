@@ -55,7 +55,7 @@ entries:
     owner: Supply Chain Data
     refresh: daily
     description: Every shipped device with model, form factor, ship date and region.
-    key_fields: [device_serial, model, form_factor, ship_date, region, bluetooth_enabled]
+    key_fields: [device_serial, model, form_factor, manufacture_date, ship_date, region, bluetooth_enabled]
 
   - name: returns_and_repairs
     type: source
@@ -84,6 +84,34 @@ entries:
     refresh: daily
     description: Sessions from the clinic fitting software, including preset and gain changes.
     key_fields: [session_id, clinic_id, device_serial, fitting_date, fitting_software_version, preset_name, program_count, gain_adjustments]
+
+  - name: audiogram_results
+    type: source
+    owner: Clinical Software
+    refresh: daily
+    description: Hearing test results recorded in the fitting software, one row per ear, conduction type and frequency tested; patient ids are hashed.
+    key_fields: [patient_id_hash, clinic_id, test_date, ear, conduction_type, frequency_hz, air_conduction_threshold_db_hl, bone_conduction_threshold_db_hl, masked]
+
+  - name: fitting_parameters
+    type: source
+    owner: Clinical Software
+    refresh: daily
+    description: Hearing-aid settings saved at each fitting session, one row per memory (program) per session.
+    key_fields: [session_id, device_serial, memory_slot, memory_name, is_default_memory, consonant_brightness, noise_reduction_level, gain_offset_db]
+
+  - name: battery_logs
+    type: source
+    owner: Device Firmware
+    refresh: daily (on app sync)
+    description: High-resolution battery log uploaded on app sync, with voltage, recorded state of charge and streaming activity per interval.
+    key_fields: [device_serial, model, log_ts, battery_voltage_mv, recorded_soc_pct, streaming_active, streaming_type, streaming_minutes]
+
+  - name: device_usage_logs
+    type: source
+    owner: Device Firmware
+    refresh: daily (on app sync)
+    description: On-device datalogging in 30-second intervals of wear time, active program and active sound-processing mode.
+    key_fields: [device_serial, interval_start, interval_seconds, wear_hours, active_program, active_mode, mode_activation_count, environment_class]
 
   - name: customer_support_tickets
     type: source

@@ -84,7 +84,7 @@ def test_read_catalog_matches_names_and_fields_case_insensitively(board):
 
 def test_read_catalog_caps_results_and_handles_no_match(board):
     assert len(call(board, "read_catalog", query="device serial model firmware")["result"]) <= 5
-    assert call(board, "read_catalog", query="audiogram thresholds")["result"] == []
+    assert call(board, "read_catalog", query="tinnitus questionnaire")["result"] == []
 
 
 def test_catalog_names():
@@ -108,3 +108,14 @@ def test_unknown_tool_returns_error_object(board):
 def test_bad_arguments_return_error_object(board, name, args):
     out = dispatch_read(name, args, board)
     assert out["error"].startswith(f"Bad arguments for {name}")
+
+
+@pytest.mark.parametrize("query, expected", [
+    ("air conduction bone conduction audiogram", "audiogram_results"),      # REQ-004
+    ("battery voltage soc streaming", "battery_logs"),                     # REQ-013
+    ("mode usage activation", "device_usage_logs"),                        # REQ-014
+    ("consonant brightness default memory", "fitting_parameters"),         # REQ-020
+])
+def test_read_catalog_finds_entries_for_new_requests(board, query, expected):
+    names = [e["name"] for e in call(board, "read_catalog", query=query)["result"]]
+    assert names[0] == expected

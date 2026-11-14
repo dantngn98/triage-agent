@@ -25,7 +25,7 @@ def test_intake_file_parses(path: Path):
 
 def test_catalog_entries_well_formed():
     entries = yaml.safe_load((DATA / "catalog.yaml").read_text(encoding="utf-8"))["entries"]
-    assert 10 <= len(entries) <= 15
+    assert 10 <= len(entries) <= 20
     names = [e["name"] for e in entries]
     assert len(names) == len(set(names))
     for e in entries:
