@@ -118,6 +118,7 @@ class TraceRecord(BaseModel):
     thinking_level: str
     config_hash: str
     mode: Literal["agent", "baseline"] = "agent"
+    repeat: int | None = None              # eval repeat number; None outside the eval
     started_at: str | None = None
     tool_calls: list[ToolCallRecord] = Field(default_factory=list)
     context_summary: str | None = None

@@ -16,6 +16,7 @@ dependencies = [
     "pandas",
     "scikit-learn",
     "matplotlib",
+    "tabulate",
 ]
 
 [project.optional-dependencies]

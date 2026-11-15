@@ -74,7 +74,7 @@ class Trace:
 
     @classmethod
     def start(cls, req: IntakeRequest, cfg: Settings, baseline: bool = False,
-              run_id: str | None = None) -> "Trace":
+              run_id: str | None = None, repeat: int | None = None) -> "Trace":
         return cls(TraceRecord(
             run_id=run_id or new_run_id(),
             request_id=req.request_id,
@@ -82,6 +82,7 @@ class Trace:
             thinking_level=cfg.thinking_level,
             config_hash=config_hash(cfg, baseline),
             mode="baseline" if baseline else "agent",
+            repeat=repeat,
             started_at=datetime.now().isoformat(timespec="seconds"),
         ))
 

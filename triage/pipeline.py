@@ -116,12 +116,12 @@ def act(req: IntakeRequest, result: TriageResult, board: Board, cfg: Settings) -
 def run(req: IntakeRequest, board: Board, cfg: Settings, *, baseline: bool = False,
         no_act: bool = False, auto_approve: bool | None = None,
         trace_path: Path | None = None, input_fn: Callable[[str], str] = input,
-        out: Callable[[str], None] = print) -> TraceRecord:
+        out: Callable[[str], None] = print, repeat: int | None = None) -> TraceRecord:
     """Run one request end to end and append its trace. Raises BudgetExceeded before
     any model call once recorded spend reaches the cap."""
     check_budget(cfg)
     auto = cfg.auto_approve if auto_approve is None else auto_approve
-    trace = Trace.start(req, cfg, baseline=baseline)
+    trace = Trace.start(req, cfg, baseline=baseline, repeat=repeat)
     try:
         notes = ""
         if not baseline:
