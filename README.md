@@ -2,7 +2,6 @@
 
 Reads an analytics intake request, gathers context from a ticket board and a data catalog, decides a route, and files one task under the right parent user story once a human approves it.
 
-> Work in progress. See [`docs/PLAN.md`](docs/PLAN.md) for the full spec.
 
 ## Setup
 

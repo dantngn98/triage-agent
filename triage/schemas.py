@@ -42,7 +42,7 @@ class TriageResult(BaseModel):
 
 
 # --------------------------------------------------------------------------
-# Route-to-field table (PLAN.md, "Which fields a route must fill"), as data.
+# Route-to-field table: which fields each route must fill, as data.
 # --------------------------------------------------------------------------
 class FieldRule(str, Enum):
     REQUIRED = "required"   # non-empty string / not None
