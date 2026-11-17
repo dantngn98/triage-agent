@@ -155,7 +155,7 @@ def triage(prompt, thinking) -> TriageResult:
 
 Google's 3.8 Flash docs show a newer Interactions API (`client.interactions.create`) alongside `generate_content`. The day-one spike confirms which surface supports function calling and `response_schema` together for this model, and the exact config field names; everything else depends only on these two functions.
 
-**Spike result (Nov 14, 2026, `scripts/spike.py`, `google-genai` 3.3.0).** `client.models.generate_content` supports both features on `gemini-3.8-flash` at low thinking, so `llm.py` uses it and the Interactions API is not needed.
+**Spike result (Nov 14, 2026, `google-genai` 3.3.0; the one-off spike script was removed once these results were recorded).** `client.models.generate_content` supports both features on `gemini-3.8-flash` at low thinking, so `llm.py` uses it and the Interactions API is not needed.
 
 - Config field names as written above: `types.ThinkingConfig(thinking_level="low")`, `types.AutomaticFunctionCallingConfig(disable=True)`, `response_mime_type="application/json"` with `response_schema=<Pydantic model>`; `resp.parsed` returns the Pydantic instance.
 - Function calls come back on `resp.function_calls` with `id`, `name` and `args`. The reply appends `resp.candidates[0].content` unchanged (to keep thought signatures) followed by a user turn of `types.Part(function_response=types.FunctionResponse(id=call.id, name=call.name, response={"result": ...}))`.
