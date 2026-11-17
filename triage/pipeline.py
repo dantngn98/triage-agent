@@ -1,8 +1,4 @@
 """Context loop -> triage -> validate -> approve -> act.
-
-Only step 2 (the context loop) lets the model choose what to do next, and only
-step 5 (act) changes anything outside the run. The model never holds a write
-tool: act() is plain Python called after approval.
 """
 from __future__ import annotations
 

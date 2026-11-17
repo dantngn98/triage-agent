@@ -1,7 +1,5 @@
-"""Board protocol and the JSON-file implementation.
-
-The pipeline only sees `Board`, so a TaigaBoard can replace JsonBoard later
-without touching the agent.
+"""
+Simulated board for triage agent, stored in a JSON file.
 """
 from __future__ import annotations
 

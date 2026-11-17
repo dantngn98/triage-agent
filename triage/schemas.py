@@ -1,7 +1,5 @@
-"""Data model: IntakeRequest, Route, TriageResult, the route-to-field table, TraceRecord.
-
-The schema stays simple (enums, strings, optionals) because the API enforces
-structure, not length or paragraph rules; those live in validator.py.
+"""
+Data model: IntakeRequest, Route, TriageResult, the route-to-field table, TraceRecord.
 """
 from __future__ import annotations
 
@@ -83,8 +81,7 @@ ROUTE_FIELD_TARGETS: dict[str, tuple[str, ...]] = {
 # --------------------------------------------------------------------------
 # Trace record: one JSON line per run, built by tracing.Trace.
 # --------------------------------------------------------------------------
-# approved/rejected at the gate; manual_review after two failed validations;
-# no_act when run with --no-act; error when the run crashed (trace still written).
+
 Decision = Literal["approved", "rejected", "manual_review", "no_act", "error"]
 
 

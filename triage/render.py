@@ -1,6 +1,5 @@
-"""Prompt files and rendering of the request fence, context prompt and triage prompt.
-
-SDK-free: llm.py sends what this module renders.
+"""
+Prompt files and rendering of the request fence, context prompt and triage prompt.
 """
 from __future__ import annotations
 

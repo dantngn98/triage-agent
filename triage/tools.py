@@ -1,10 +1,5 @@
-"""Read-only tools the model may call in the context loop, and their dispatcher.
-
-The tool functions are plain typed callables whose docstrings become the tool
-descriptions the model sees (llm.py turns them into function declarations).
-They are built per board by `read_tools`, so the model-facing signature holds
-only the model's arguments. Write actions are not here: they live in Python
-and run only after approval.
+"""
+Read-only tools the model may call in the context loop, and their dispatcher.
 """
 from __future__ import annotations
 
@@ -53,9 +48,6 @@ def catalog_names(path: Path | str = CATALOG_PATH) -> set[str]:
 
 def search_catalog(query: str, path: Path | str = CATALOG_PATH) -> list[dict]:
     """Case-insensitive keyword match over entry names and key fields.
-
-    Crude on purpose: descriptions are not searched, so a near-miss here is a
-    realistic grounding failure worth measuring.
     """
     q = tokenize(_clean_query(query))
     if not q:

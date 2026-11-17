@@ -1,7 +1,5 @@
-"""Deterministic checks on a TriageResult: what the schema cannot express.
-
-Each rule returns a list of error strings (empty when it passes). The strings
-are fed back to the model on the retry, so they say what to fix.
+"""
+Deterministic checks on a TriageResult: what the schema cannot express.
 """
 from __future__ import annotations
 

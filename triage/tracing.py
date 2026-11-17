@@ -1,7 +1,5 @@
-"""Trace building, JSONL writing, cost calculation and the spend cap.
-
-Cost: input = prompt + tool-use prompt tokens; output = candidate + thinking
-tokens (thinking is billed as output). Missing usage fields count as 0.
+"""
+Trace building, JSONL writing, cost calculation and the spend cap.
 """
 from __future__ import annotations
 

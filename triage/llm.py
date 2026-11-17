@@ -1,11 +1,5 @@
-"""The only module that imports google-genai.
-
-Surface confirmed by the step 1 spike: client.models.generate_content with
-manual function calling and response_schema. Callers see SDK-free types
-(ToolCall, ContextTurn, TriageOutput, CallUsage) plus an opaque history list,
-so swapping providers touches this file only.
-
-No temperature, top_p or top_k is ever sent; thinking_level only.
+"""
+Triage agent LLM client and context loop.
 """
 from __future__ import annotations
 
