@@ -2,13 +2,7 @@
 
 Reads an analytics intake request, gathers context from a ticket board and a data catalog, decides a route, and files one task under the right parent user story once a human approves it.
 
-## How it works
-
-The agent has three kinds of parts:
-
-- **Gemini** (`gemini-3.8-flash` at low thinking) only reasons. It never holds a tool that can change anything.
-- **Read-only sources** the model may query during the context loop: the ticket board and the data catalog.
-- **Write actions** that only Python executes, after a human approves the result.
+## Architecture
 
 ```mermaid
 flowchart TD
@@ -29,9 +23,7 @@ flowchart TD
     F --> F3["append_note"]
 ```
 
-Only step 2 lets the model choose what to do next, and only step 5 changes anything outside the run. Every step writes to a trace: one JSON line per run in `traces/<date>.jsonl`, holding a hash of the settings and prompt files, every tool call with its arguments and result, each triage attempt with its validator errors, token usage, cost, latency and the final decision.
-
-### The loop, step by step
+## Step by Step Agent Loop
 
 1. **Load.** The CLI parses the intake file into an `IntakeRequest`. A spend check refuses to start once the recorded cost of all traces and eval results reaches `MAX_SPEND_USD`.
 2. **Context loop.** The model receives the request, fenced and labelled as untrusted data, plus three read-only tools. It decides which to call and in what order, for up to `MAX_CONTEXT_TURNS` (4) turns. The loop ends on the first turn with no tool calls. Tools are switched off on the last turn, so the loop always ends with a summary of at most five sentences: candidate duplicate tickets, relevant catalog entries, and any instructions embedded in the request.
@@ -47,7 +39,6 @@ Only step 2 lets the model choose what to do next, and only step 5 changes anyth
 
 ### Tools
 
-The model gets three read tools in step 2. They are plain typed Python functions whose docstrings become the tool descriptions the model sees, so each docstring says when to call it. Automatic function calling is off: `pipeline.py` dispatches every call itself, logs it and caps the turns.
 
 | Tool | Arguments | Returns |
 | --- | --- | --- |
@@ -55,9 +46,6 @@ The model gets three read tools in step 2. They are plain typed Python functions
 | `get_ticket` | `ref` | One ticket in full: title, description, status, parent story, created date, notes |
 | `read_catalog` | `query` (≤ 200 chars) | Up to 5 catalog entries matched by keyword on name and field names: name, type (dashboard or source), owner, refresh cadence, description, key fields |
 
-The dispatcher never raises. An unknown tool name, a bad argument or a missing ticket comes back to the model as an `{"error": ...}` result, so a request that tells the model to call `close_ticket` gets an error, not an action.
-
-The three write actions are not tools. They are Python functions called in step 5, after approval:
 
 | Action | Effect |
 | --- | --- |
@@ -65,15 +53,8 @@ The three write actions are not tools. They are Python functions called in step 
 | `append_note` | Adds a note to an existing ticket |
 | `write_clarification` | Writes the clarifying question to a Markdown draft |
 
-The board is a JSON file behind a small `Board` interface (`search`, `get`, `create_task`, `append_note`), so a live tracker could replace it without touching the agent.
+The board is a JSON file behind a small `Board` interface (`search`, `get`, `create_task`, `append_note`)
 
-### Guardrails
-
-- **No write tools for the model.** An injected instruction has nothing to call.
-- **Approval gate.** Nothing is written until a human answers `y`. `--auto-approve` exists for evaluation runs, which always use a fresh copy of the seed board.
-- **Validator.** The output must parse; fields must match the route (for example, a Duplicate needs `duplicate_of` and no task); the task description must be one paragraph of at most 120 words with no lists; the title must be at most 80 characters; `duplicate_of` must exist on the board; every `catalog_refs` entry must exist in the catalog; caveats must not be blank.
-- **Untrusted input.** The request body is fenced with delimiters in both prompts, and `<<<`/`>>>` inside it are neutralised so it cannot close the fence.
-- **Bounded reads and spend.** Tool arguments are length-capped and clamped, the context loop is capped at 4 turns, API calls retry only on 429 and 503 with backoff, and runs stop at the spend cap.
 
 ### Code map
 
